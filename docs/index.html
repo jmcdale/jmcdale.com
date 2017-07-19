@@ -1,18 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Josh McDale</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Test</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <style type="text/css">
         body {
             font-family: 'Roboto', sans-serif;
             font-size: 32px;
             color: #CCCCCC;
+            background: url("images/me.jpg") no-repeat 70% center fixed;
+            background-size: cover;
             background-color: black;
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+
+        a.icon {
+            position: relative;
+            display: inline-block;
+            transition: all .1s ease-out;
+        }
+
+        a.icon:hover {
+            transform: scale(1.2);
+        }
+
+        a.icon:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        h1 {
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 544px) {
+            body {
+                background: linear-gradient(
+                        rgba(0, 0, 0, 0.7),
+                        rgba(0, 0, 0, 0.7)
+                ), url("images/me.jpg") no-repeat 80% center fixed;
+                background-size: cover;
+                background-color: black;
+            }
         }
     </style>
 </head>
 <body>
-    <div>JOSH MCDALE</div>
+<div class="container-fluid ml-sm-5">
+    <div class="row hidden-xs-down h-25">&nbsp;</div>
+    <div class="row hidden-sm-down h-25">&nbsp;</div>
+    <div class="row mt-5 ml-sm-2 justify-content-center justify-content-sm-start">
+        <div class="col-auto ml-sm-5">
+            <h1>JOSH MCDALE</h1>
+            <div class="row justify-content-center">
+                <div class="col-auto  px-2">
+                    <a href="https://twitter.com/joshedly" class="icon">
+                        <object class="icon" data="images/icons/twitter.svg" type="image/svg+xml" height="32px"
+                                width="32px"></object>
+                    </a>
+                </div>
+                <div class="col-auto  px-2">
+                    <a href="https://www.linkedin.com/in/joshmcdale/" class="icon">
+                        <object class="icon" data="images/icons/linkedin.svg" type="image/svg+xml" height="32px"
+                                width="32px"></object>
+                    </a>
+                </div>
+                <!--<div class="col-auto  px-2">-->
+                    <!--<a href="http://google.com" class="icon">-->
+                        <!--<object class="icon" data="images/icons/document.svg" type="image/svg+xml" height="32px"-->
+                                <!--width="32px"></object>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="col-auto  px-2">-->
+                    <!--<a href="https://jmcdale.com/blog" class="icon">-->
+                        <!--<object class="icon" data="images/icons/news.svg" type="image/svg+xml" height="32px"-->
+                                <!--width="32px"></object>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <div class="col-auto  px-2">
+                    <a href="https://github.com/jmcdale" class="icon">
+                        <object class="icon" data="images/icons/github.svg" type="image/svg+xml" height="32px"
+                                width="32px"></object>
+                    </a>
+                </div>
+                <div class="col-auto  px-2">
+                    <a href="https://stackoverflow.com/users/1038485/jmcdale" class="icon">
+                        <object class="icon" data="images/icons/stackoverflow.svg" type="image/svg+xml" height="32px"
+                                width="32px"></object>
+                    </a>
+                </div>
+                <div class="col-auto  px-2">
+                    <a href="mailto:josh@jmcdale.com" class="icon">
+                        <object class="icon" data="images/icons/email2.svg" type="image/svg+xml" height="32px"
+                                width="32px"></object>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
 </body>
 </html>
