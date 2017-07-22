@@ -47,7 +47,7 @@
             letter-spacing: 2px;
             font-size: 32px;
             margin: 0px;
-            margin-top:.5rem;
+            margin-top: .5rem;
         }
 
         h2 {
@@ -61,21 +61,28 @@
         .brand {
             letter-spacing: 2px;
             font-size: 32px;
+            color: #CCCCCC;
+        }
+
+        a:link.brand, a:visited.brand {
+            color: #CCCCCC;
+        }
+
+        a:hover.brand, a:active.brand {
+            color: #00904E !important;
+        }
+
+        a:link.post, a:visited.post {
+            color: black;
+        }
+
+        a:hover.post, a:active.post {
+            color: #00904E !important;
+            text-decoration: none;
         }
 
         .bar {
             background-color: black;
-        }
-
-        .toggler {
-            background-color: white;
-        }
-
-        .menu-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-            width: 1.5em;
-            height: 1.5em;
-            display: inline-block;
         }
 
         .contents {
@@ -88,9 +95,7 @@
             padding-right: 3rem;
             padding-top: 1.5rem;
             padding-bottom: 1.5rem;
-
         }
-
 
         @media (max-width: 768px) {
             .contents {
@@ -108,51 +113,82 @@
 </head>
 <body>
 <nav class="navbar bar sticky-top navbar-inverse navbar-toggleable-sm py-0">
-    <a class="navbar-brand brand">JOSH MCDALE</a>
+    <a class="navbar-brand brand" href="https://jmcdale.com">JOSH MCDALE</a>
     <div class="navbar-toggler navbar-toggler-right menu" data-toggle="collapse" data-target="#navbarNavDropdown">
         <span class="navbar-toggler-icon"></span>
     </div>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link icon" href="#">
+
+            <li class="nav-item hidden-md-up m-auto">
+                <a class="nav-link icon px-2" href="https://twitter.com/joshedly">
                     <object class="icon" data="../images/icons/twitter.svg" type="image/svg+xml" height="32px"
                             width="32px"></object>
-                    <span class="hidden-md-up">Twitter</span>
+                </a>
+                <a class="nav-link icon px-2" href="https://www.linkedin.com/in/joshmcdale/">
+                    <object class="icon" data="../images/icons/linkedin.svg" type="image/svg+xml" height="32px"
+                            width="32px"></object>
+                </a>
+                <!--<a class="nav-link icon px-2" href="#">-->
+                <!--<object class="icon" data="../images/icons/document.svg" type="image/svg+xml" height="32px"-->
+                <!--width="32px"></object>-->
+                <!--</a>-->
+                <a class="nav-link icon px-2" href="https://jmcdale.com/blog">
+                    <object class="icon" data="../images/icons/news.svg" type="image/svg+xml" height="32px"
+                            width="32px"></object>
+                </a>
+                <a class="nav-link icon px-2" href="https://github.com/jmcdale">
+                    <object class="icon" data="../images/icons/github.svg" type="image/svg+xml" height="32px"
+                            width="32px"></object>
+                </a>
+                <a class="nav-link icon px-2" href="https://stackoverflow.com/users/1038485/jmcdale">
+                    <object class="icon" data="../images/icons/stackoverflow.svg" type="image/svg+xml" height="32px"
+                            width="32px"></object>
+                </a>
+                <a class="nav-link icon px-2" href="mailto:josh@jmcdale.com">
+                    <object class="icon" data="../images/icons/email2.svg" type="image/svg+xml" height="32px"
+                            width="32px"></object>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link icon" href="#">
+
+            <li class="nav-item hidden-sm-down">
+                <a class="nav-link icon" href="https://twitter.com/joshedly">
+                    <object class="icon" data="../images/icons/twitter.svg" type="image/svg+xml" height="32px"
+                            width="32px"></object>
+                </a>
+            </li>
+            <li class="nav-item hidden-sm-down">
+                <a class="nav-link icon" href="https://www.linkedin.com/in/joshmcdale/">
                     <object class="icon" data="../images/icons/linkedin.svg" type="image/svg+xml" height="32px"
                             width="32px"></object>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link icon" href="#">
-                    <object class="icon" data="../images/icons/document.svg" type="image/svg+xml" height="32px"
-                            width="32px"></object>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link icon" href="#">
+            <!--<li class="nav-item hidden-sm-down">-->
+            <!--<a class="nav-link icon" href="#">-->
+            <!--<object class="icon" data="../images/icons/document.svg" type="image/svg+xml" height="32px"-->
+            <!--width="32px"></object>-->
+            <!--</a>-->
+            <!--</li>-->
+            <li class="nav-item hidden-sm-down">
+                <a class="nav-link icon" href="https://jmcdale.com/blog">
                     <object class="icon" data="../images/icons/news.svg" type="image/svg+xml" height="32px"
                             width="32px"></object>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link icon" href="#">
+            <li class="nav-item hidden-sm-down">
+                <a class="nav-link icon" href="https://github.com/jmcdale">
                     <object class="icon" data="../images/icons/github.svg" type="image/svg+xml" height="32px"
                             width="32px"></object>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link icon" href="#">
+            <li class="nav-item hidden-sm-down">
+                <a class="nav-link icon" href="https://stackoverflow.com/users/1038485/jmcdale">
                     <object class="icon" data="../images/icons/stackoverflow.svg" type="image/svg+xml" height="32px"
                             width="32px"></object>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link icon" href="#">
+            <li class="nav-item hidden-sm-down">
+                <a class="nav-link icon" href="mailto:josh@jmcdale.com">
                     <object class="icon" data="../images/icons/email2.svg" type="image/svg+xml" height="32px"
                             width="32px"></object>
                 </a>
@@ -163,26 +199,50 @@
 <div class="container contents">
     <div class="row">
         <div class="col-12">
-            <h1>Android Tutorial</h1>
-            <h2>October 24, 2017</h2>
-            <p>Convergence fund thought leader responsive pair programming waterfall is so 2000 and late food-truck physical computing thought leader pivot pitch deck. User story food-truck experiential personas moleskine fund prototype agile actionable insight physical computing agile. User story engaging user story venture capital intuitive long shadow responsive. Bootstrapping user story actionable insight hacker Steve Jobs intuitive personas minimum viable product. Intuitive iterate innovate parallax pair programming physical computing affordances disrupt fund ideate ship it driven.
-            </p>
+            <a class="post" href="#">
+                <h1>Android Tutorial</h1>
+                <h2>October 24, 2017</h2>
+                <p>Convergence fund thought leader responsive pair programming waterfall is so 2000 and late food-truck
+                    physical computing thought leader pivot pitch deck. User story food-truck experiential personas
+                    moleskine fund prototype agile actionable insight physical computing agile. User story engaging user
+                    story venture capital intuitive long shadow responsive. Bootstrapping user story actionable insight
+                    hacker Steve Jobs intuitive personas minimum viable product. Intuitive iterate innovate parallax
+                    pair
+                    programming physical computing affordances disrupt fund ideate ship it driven.
+                </p>
+            </a>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <h1>Android Tutorial</h1>
-            <h2>October 24, 2017</h2>
-            <p>Convergence fund thought leader responsive pair programming waterfall is so 2000 and late food-truck physical computing thought leader pivot pitch deck. User story food-truck experiential personas moleskine fund prototype agile actionable insight physical computing agile. User story engaging user story venture capital intuitive long shadow responsive. Bootstrapping user story actionable insight hacker Steve Jobs intuitive personas minimum viable product. Intuitive iterate innovate parallax pair programming physical computing affordances disrupt fund ideate ship it driven.
-            </p>
+            <a class="post" href="#">
+                <h1>Android Tutorial</h1>
+                <h2>October 24, 2017</h2>
+                <p>Convergence fund thought leader responsive pair programming waterfall is so 2000 and late food-truck
+                    physical computing thought leader pivot pitch deck. User story food-truck experiential personas
+                    moleskine fund prototype agile actionable insight physical computing agile. User story engaging user
+                    story venture capital intuitive long shadow responsive. Bootstrapping user story actionable insight
+                    hacker Steve Jobs intuitive personas minimum viable product. Intuitive iterate innovate parallax
+                    pair
+                    programming physical computing affordances disrupt fund ideate ship it driven.
+                </p>
+            </a>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <h1>Android Tutorial</h1>
-            <h2>October 24, 2017</h2>
-            <p>Convergence fund thought leader responsive pair programming waterfall is so 2000 and late food-truck physical computing thought leader pivot pitch deck. User story food-truck experiential personas moleskine fund prototype agile actionable insight physical computing agile. User story engaging user story venture capital intuitive long shadow responsive. Bootstrapping user story actionable insight hacker Steve Jobs intuitive personas minimum viable product. Intuitive iterate innovate parallax pair programming physical computing affordances disrupt fund ideate ship it driven.
-            </p>
+            <a class="post" href="#">
+                <h1>Android Tutorial</h1>
+                <h2>October 24, 2017</h2>
+                <p>Convergence fund thought leader responsive pair programming waterfall is so 2000 and late food-truck
+                    physical computing thought leader pivot pitch deck. User story food-truck experiential personas
+                    moleskine fund prototype agile actionable insight physical computing agile. User story engaging user
+                    story venture capital intuitive long shadow responsive. Bootstrapping user story actionable insight
+                    hacker Steve Jobs intuitive personas minimum viable product. Intuitive iterate innovate parallax
+                    pair
+                    programming physical computing affordances disrupt fund ideate ship it driven.
+                </p>
+            </a>
         </div>
     </div>
 </div>
