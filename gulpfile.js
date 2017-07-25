@@ -1,12 +1,43 @@
 // Assigning modules to local variables
 var gulp = require('gulp');
+var fs = require('fs');
 var less = require('gulp-less');
 var pug = require('gulp-pug');
 var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
+var frontMatter = require('gulp-front-matter');
+var hljs = require('highlight.js');
+var md = require('markdown-it')({
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(lang, str).value;
+            } catch (__) {
+            }
+        }
+
+        return ''; // use external default escaping
+    },
+    linkify: true
+});
 
 // Default task
 gulp.task('default', ['pug', 'less', 'minify-css', 'minify-js', 'rename-out']);
+
+// Less task to compile the less files and add the banner
+gulp.task('md', function () {
+    return gulp.src('./posts/*.md')
+        .pipe(frontMatter())
+        .pipe(data(function (file) {
+            var contents = md.render(file);
+            return {"post-content": contents}
+        }))
+
+        .pipe(wrap(function (data) {
+            return fs.readFileSync('./templates/post.pug').toString();
+        }, null, {engine: 'pug'}))
+        .pipe(gulp.dest('./build'))
+});
 
 // Less task to compile the less files and add the banner
 gulp.task('less', function () {
