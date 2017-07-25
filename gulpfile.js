@@ -6,6 +6,8 @@ var pug = require('gulp-pug');
 var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var frontMatter = require('gulp-front-matter');
+var data = require('gulp-data');
+var wrap = require('gulp-wrap');
 var hljs = require('highlight.js');
 var md = require('markdown-it')({
     highlight: function (str, lang) {
@@ -27,15 +29,13 @@ gulp.task('default', ['pug', 'less', 'minify-css', 'minify-js', 'rename-out']);
 // Less task to compile the less files and add the banner
 gulp.task('md', function () {
     return gulp.src('./posts/*.md')
-        .pipe(frontMatter())
+        .pipe(frontMatter({"property": 'data.frontMatter'}))
         .pipe(data(function (file) {
-            var contents = md.render(file);
-            return {"post-content": contents}
+            var contents = md.render(file.contents.toString());
+            return {"post": contents}
         }))
-
-        .pipe(wrap(function (data) {
-            return fs.readFileSync('./templates/post.pug').toString();
-        }, null, {engine: 'pug'}))
+        .pipe(wrap({"src":"./templates/post.pug"}, null, {engine: 'pug', pretty:true}))
+        .pipe(rename({extname: ".html"}))
         .pipe(gulp.dest('./build'))
 });
 
