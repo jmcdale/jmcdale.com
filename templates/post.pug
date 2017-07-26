@@ -7,7 +7,11 @@ html(lang='en')
         link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet')
         link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ', crossorigin='anonymous')
         link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', integrity='sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=', crossorigin='anonymous')
-        link(rel='stylesheet', href='/css/post.css')
+        link(rel='stylesheet', href='../css/post.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css')
+
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js')
     body
         nav.navbar.bar.sticky-top.navbar-inverse.navbar-toggleable-sm.py-0
             a.navbar-brand.brand(href='https://jmcdale.com') JOSH MCDALE
@@ -20,10 +24,6 @@ html(lang='en')
                             object.icon(data='../images/icons/twitter.svg', type='image/svg+xml', height='32px', width='32px')
                         a.nav-link.icon.px-2(href='https://www.linkedin.com/in/joshmcdale/')
                             object.icon(data='../images/icons/linkedin.svg', type='image/svg+xml', height='32px', width='32px')
-                        // <a class="nav-link icon px-2" href="#">
-                        // <object class="icon" data="../images/icons/document.svg" type="image/svg+xml" height="32px"
-                        // width="32px"></object>
-                        // </a>
                         a.nav-link.icon.px-2(href='https://jmcdale.com/blog')
                             object.icon(data='../images/icons/news.svg', type='image/svg+xml', height='32px', width='32px')
                         a.nav-link.icon.px-2(href='https://github.com/jmcdale')
@@ -38,12 +38,6 @@ html(lang='en')
                     li.nav-item.hidden-sm-down
                         a.nav-link.icon(href='https://www.linkedin.com/in/joshmcdale/')
                             object.icon(data='../images/icons/linkedin.svg', type='image/svg+xml', height='32px', width='32px')
-                    // <li class="nav-item hidden-sm-down">
-                    // <a class="nav-link icon" href="#">
-                    // <object class="icon" data="../images/icons/document.svg" type="image/svg+xml" height="32px"
-                    // width="32px"></object>
-                    // </a>
-                    // </li>
                     li.nav-item.hidden-sm-down
                         a.nav-link.icon(href='https://jmcdale.com/blog')
                             object.icon(data='../images/icons/news.svg', type='image/svg+xml', height='32px', width='32px')

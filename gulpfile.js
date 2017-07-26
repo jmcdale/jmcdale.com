@@ -13,18 +13,19 @@ var md = require('markdown-it')({
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
             try {
-                return hljs.highlight(lang, str).value;
-            } catch (__) {
-            }
+                return '<pre class="hljs"><code>' +
+                    hljs.highlight(lang, str, true).value +
+                    '</code></pre>';
+            } catch (__) {}
         }
 
-        return ''; // use external default escaping
+        return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
     },
     linkify: true
 });
 
 // Default task
-gulp.task('default', ['pug', 'less', 'minify-css', 'minify-js', 'rename-out']);
+gulp.task('default', ['md', 'less']);
 
 // Less task to compile the less files and add the banner
 gulp.task('md', function () {
@@ -36,17 +37,14 @@ gulp.task('md', function () {
         }))
         .pipe(wrap({"src":"./templates/post.pug"}, null, {engine: 'pug', pretty:true}))
         .pipe(rename({extname: ".html"}))
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest('./build/posts'))
 });
 
 // Less task to compile the less files and add the banner
 gulp.task('less', function () {
     return gulp.src('./less/*.less')
         .pipe(less())
-        .pipe(gulp.dest('./build/css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+        .pipe(gulp.dest('./build/css'));
 });
 
 // Compile pug files to html
