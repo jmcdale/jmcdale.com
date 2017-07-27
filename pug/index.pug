@@ -1,0 +1,88 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title Josh McDale
+        link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', integrity='sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=', crossorigin='anonymous')
+        style(type='text/css').
+            html {
+                height: 100%;
+                min-height: 100%;
+            }
+            body {
+                font-family: 'Roboto', sans-serif;
+                font-size: 32px;
+                color: #CCCCCC;
+                background: url("images/me.jpg") no-repeat;
+                background-position: 70% center;
+                background-attachment: fixed;
+                background-size: cover;
+                background-color: black;
+                min-height: 100%;
+            }
+            h1 {
+                font-size: 48px;
+            }
+            a.icon {
+                position: relative;
+                display: inline-block;
+                transition: all .1s ease-out;
+            }
+            a.icon:hover {
+                transform: scale(1.2);
+            }
+            a.icon:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+            h1 {
+                letter-spacing: 2px;
+            }
+            @media (max-width: 768px) {
+                body {
+                    background: linear-gradient(
+                            rgba(0, 0, 0, 0.7),
+                            rgba(0, 0, 0, 0.7)
+                    ), url("content/me.jpg") no-repeat;
+                    background-position: 80% center;
+                    background-attachment: fixed;
+                    background-size: cover;
+                    background-color: black;
+                }
+            }
+    body
+        .container-fluid.ml-sm-5
+            .row.hidden-xs-down.h-25  
+            .row.hidden-sm-down.h-25  
+            .row.mt-5.ml-sm-2.justify-content-center.justify-content-sm-start
+                .col-auto.ml-sm-5
+                    h1 JOSH MCDALE
+                    .row.justify-content-center
+                        .col-auto.px-2
+                            a.icon(href='https://twitter.com/joshedly')
+                                object.icon(data='images/icons/twitter.svg', type='image/svg+xml', height='32px', width='32px')
+                        .col-auto.px-2
+                            a.icon(href='https://www.linkedin.com/in/joshmcdale/')
+                                object.icon(data='images/icons/linkedin.svg', type='image/svg+xml', height='32px', width='32px')
+                        .col-auto.px-2
+                            a.icon(href='https://jmcdale.com/blog')
+                                object.icon(data='images/icons/news.svg', type='image/svg+xml', height='32px', width='32px')
+                        .col-auto.px-2
+                            a.icon(href='https://github.com/jmcdale')
+                                object.icon(data='images/icons/github.svg', type='image/svg+xml', height='32px', width='32px')
+                        .col-auto.px-2
+                            a.icon(href='https://stackoverflow.com/users/1038485/jmcdale')
+                                object.icon(data='images/icons/stackoverflow.svg', type='image/svg+xml', height='32px', width='32px')
+                        .col-auto.px-2
+                            a.icon(href='mailto:josh@jmcdale.com')
+                                object.icon(data='images/icons/email2.svg', type='image/svg+xml', height='32px', width='32px')
+        script(src='https://code.jquery.com/jquery-3.1.1.slim.min.js', integrity='sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js', integrity='sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb', crossorigin='anonymous')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn', crossorigin='anonymous')

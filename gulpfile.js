@@ -25,10 +25,10 @@ var md = require('markdown-it')({
 });
 
 // Default task
-gulp.task('default', ['md', 'less']);
+gulp.task('default', ['pug', 'make-posts', 'less']);
 
 // Less task to compile the less files and add the banner
-gulp.task('md', function () {
+gulp.task('make-posts', function () {
     return gulp.src('./posts/*.md')
         .pipe(frontMatter({"property": 'data.frontMatter'}))
         .pipe(data(function (file) {
@@ -37,7 +37,7 @@ gulp.task('md', function () {
         }))
         .pipe(wrap({"src":"./templates/post.pug"}, null, {engine: 'pug', pretty:true}))
         .pipe(rename({extname: ".html"}))
-        .pipe(gulp.dest('./build/posts'))
+        .pipe(gulp.dest('./build/blog/posts'))
 });
 
 // Less task to compile the less files and add the banner
@@ -51,12 +51,12 @@ gulp.task('less', function () {
 gulp.task('pug', function () {
     var YOUR_LOCALS = {};
 
-    gulp.src('./pug/*.pug')
+    gulp.src('./pug/**/*.pug')
         .pipe(pug({
             locals: YOUR_LOCALS,
             pretty: true
         }))
-        .pipe(gulp.dest('.'))
+        .pipe(gulp.dest('./build'))
 });
 
 // Minify CSS
