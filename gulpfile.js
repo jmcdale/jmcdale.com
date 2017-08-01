@@ -1,5 +1,6 @@
 // Assigning modules to local variables
 var gulp = require('gulp');
+var browserSync = require('browser-sync');
 var fs = require('fs');
 var less = require('gulp-less');
 var pug = require('gulp-pug');
@@ -85,24 +86,32 @@ gulp.task('pug', function () {
         .pipe(gulp.dest(buildPath))
 });
 
-// Minify CSS
-gulp.task('minify-css', ['less'], function () {
-    return gulp.src('./build/css/*.css')
-        .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(buildPath + '/css-min'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+gulp.task('serve', ['default'], function() {
+    browserSync.init({
+        server: {
+            baseDir: buildPath
+        }
+    });
 });
 
-// Minify JS
-gulp.task('minify-js', function () {
-    return gulp.src('./js/*.js')
-        .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(buildPath + '/js'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
-});
+// Minify CSS
+// gulp.task('minify-css', ['less'], function () {
+//     return gulp.src('./build/css/*.css')
+//         .pipe(cleanCSS({compatibility: 'ie8'}))
+//         .pipe(rename({suffix: '.min'}))
+//         .pipe(gulp.dest(buildPath + '/css-min'))
+//         .pipe(browserSync.reload({
+//             stream: true
+//         }))
+// });
+//
+// // Minify JS
+// gulp.task('minify-js', function () {
+//     return gulp.src('./js/*.js')
+//         .pipe(uglify())
+//         .pipe(rename({suffix: '.min'}))
+//         .pipe(gulp.dest(buildPath + '/js'))
+//         .pipe(browserSync.reload({
+//             stream: true
+//         }))
+// });
