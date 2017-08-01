@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Josh McDale</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" integrity="sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar bar sticky-top navbar-inverse navbar-toggleable-sm py-0"><a class="navbar-brand brand" href="/">JOSH MCDALE</a>
+      <div class="navbar-toggler navbar-toggler-right menu" data-toggle="collapse" data-target="#navbarNavDropdown"><span class="navbar-toggler-icon"></span></div>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item hidden-md-up m-auto"><a class="nav-link icon px-2" href="https://twitter.com/joshedly">
+              <object class="icon" data="/content/icons/twitter.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="https://www.linkedin.com/in/joshmcdale/">
+              <object class="icon" data="/content/icons/linkedin.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="/blog">
+              <object class="icon" data="/content/icons/news.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="https://github.com/jmcdale">
+              <object class="icon" data="/content/icons/github.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="https://stackoverflow.com/users/1038485/jmcdale">
+              <object class="icon" data="/content/icons/stackoverflow.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="mailto:josh@jmcdale.com">
+              <object class="icon" data="/content/icons/email2.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="https://twitter.com/joshedly">
+              <object class="icon" data="/content/icons/twitter.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="https://www.linkedin.com/in/joshmcdale/">
+              <object class="icon" data="/content/icons/linkedin.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="/blog">
+              <object class="icon" data="/content/icons/news.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="https://github.com/jmcdale">
+              <object class="icon" data="/content/icons/github.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="https://stackoverflow.com/users/1038485/jmcdale">
+              <object class="icon" data="/content/icons/stackoverflow.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="mailto:josh@jmcdale.com">
+              <object class="icon" data="/content/icons/email2.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container contents">
+      <div class="row">
+        <div class="col-12"><h1>Android RecyclerViews 101</h1>
+<p>RecyclerViews for Android are the natural evolution of the ListView. They are cleaner, easier to use, and always enforce view recycling. Use them whenever you want to display data with a set of common views that can be reused for efficiency and to replace ListViews and GridView.</p>
+<p>This tutorial will teach you how to use a RecyclerView to display a list of Strings.</p>
+<p>Setup for this tutorial included the creation of a new project using the [Blank Activity] template in Android Studio. The resulting project includes: MainActivity.class.</p>
+<h2>Adding the Dependencies</h2>
+<p>The RecyclerView class must be manually included in your projects in order to use it. Why? I’m not sure, but maybe they just like us to have extra steps to do. Let’s add it.</p>
+<p>Go into your build.gradle file—the one for your app, not the project. (The correct one for your app will say “android” somewhere in it.) Add this line:</p>
+<pre class="hljs"><code>compile <span class="hljs-string">'com.android.support:recyclerview-v7:21.0.+'</span>
+</code></pre>
+<p>on a new line inside the dependencies section. ReSync gradle… and Boom! We can use it!</p>
+<h2>Adding the View</h2>
+<p>Add a RecyclerView for us to use in your xml layout file.</p>
+<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">android.support.v7.widget.RecyclerView</span>
+        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/recyclerView"</span>
+        <span class="hljs-attr">android:scrollbars</span>=<span class="hljs-string">"vertical"</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span>/&gt;</span>
+</code></pre>
+<p>Also, find it and pop it into a variable in the class you want to use it from.</p>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> android.support.v7.widget.RecyclerView;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
+
+    <span class="hljs-keyword">private</span> RecyclerView recyclerView;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+    <span class="hljs-comment">// ...</span>
+</code></pre>
+<p>Yay! We have something to work with now!</p>
+<p>A RecyclerView requires 2 things before it will start working:</p>
+<ol>
+<li>We must give it a LayoutManager.</li>
+<li>We must give it an Adapter.</li>
+</ol>
+<p>A LayoutManager is the class that defines how the views inside our RecyclerView get organized on the screen. There are some built-in LayoutManagers that we can instantiate and use:</p>
+<ul>
+<li>LinearLayoutManager – Layout Views linearly, vertically or horizontally.</li>
+<li>GridLayoutManager – Layout Views in a grid pattern.</li>
+</ul>
+<h3>Adding the LayoutManager</h3>
+<p>Using one of these provided LayoutManagers allows us to easily replace ListViews and GridViews :). For this tutorial, we will use a LinearLayoutManager setup to display items vertically—like a ListView.</p>
+<pre class="hljs"><code>recyclerView.setLayoutManager(<span class="hljs-keyword">new</span> LinearLayoutManager(<span class="hljs-keyword">this</span>, LinearLayoutManager.VERTICAL, <span class="hljs-keyword">false</span>));
+</code></pre>
+<p>Now that we know how to lay things out, we must start on the bulk of the work: creating our Adapter.</p>
+<h3>Adding the Adapter</h3>
+<p>Before we start: let’s make sure we have a list of Strings that we’ll be displaying. I am adding a list to my MainActivity for this purpose. Any way you want to obtain a list of Strings is fine.</p>
+<pre class="hljs"><code><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> List adjectives = Arrays.asList(<span class="hljs-keyword">new</span> String[]{
+            <span class="hljs-string">"Awesome"</span>, <span class="hljs-string">"Peculiar"</span>, <span class="hljs-string">"Green"</span>, <span class="hljs-string">"Sad"</span>, <span class="hljs-string">"Gross"</span>, <span class="hljs-string">"Lovely"</span>, <span class="hljs-string">"Insane"</span>,
+            <span class="hljs-string">"Compostable"</span>, <span class="hljs-string">"Blue"</span>, <span class="hljs-string">"Wooden"</span>, <span class="hljs-string">"Grotesque"</span>, <span class="hljs-string">"Beautiful"</span>});
+</code></pre>
+<p>Next, let’s make a simple layout that includes a TextView for displaying each item in our list, and an ImageView that displays the launcher icon. (The ImageView is just to show that we can have multiple subviews for each item.)</p>
+<p>Create an <code>li_adjective.xml</code> layout.</p>
+<pre class="hljs"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"utf-8"</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span>
+              <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">"http://schemas.android.com/tools"</span>
+              <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">"horizontal"</span>
+              <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+              <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">ImageView</span>
+        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/ivImage"</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"100dp"</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"100dp"</span>
+        <span class="hljs-attr">android:src</span>=<span class="hljs-string">"@drawable/ic_launcher"</span>/&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span>
+        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/tvText"</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"wrap_content"</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span>
+        <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">"center_vertical"</span>
+        <span class="hljs-attr">tools:text</span>=<span class="hljs-string">"EXAMPLE ITEM"</span>/&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span>
+</code></pre>
+<p>Adapter Time! Create a class:</p>
+<pre class="hljs"><code><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RecyclerViewStringListAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RecyclerView</span>.<span class="hljs-title">Adapter</span> </span>{
+</code></pre>
+<p>The Adapter class requires us to have an extension of RecyclerView.ViewHolder for recycling purposes. This ViewHolder is meant to be an accessor for all the subviews of each item. In our example, we will only require a TextView, but more complex scenarios could include any number of TextViews, ImageViews, or other Views.</p>
+<p>So inside of RecyclerViewStringListAdapter, let’s create an inner class that extends RecyclerView.ViewHolder and grabs a reference to our TextView that we will use to display our String and the ImageView (in case we want to change the image for each item).</p>
+<pre class="hljs"><code><span class="hljs-keyword">protected</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ViewHolder</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RecyclerView</span>.<span class="hljs-title">ViewHolder</span> </span>{
+    ImageView ivImage;
+    TextView tvText;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ViewHolder</span><span class="hljs-params">(View itemView)</span> </span>{
+        <span class="hljs-keyword">super</span>(itemView);
+        ivImage = (ImageView) itemView.findViewById(R.id.ivImage);
+        tvText = (TextView) itemView.findViewById(R.id.tvText);
+    }
+}
+</code></pre>
+<p>4 more things!
+In this adapter we are required to Override onCreateViewHolder, onBindViewHolder, and getItemCount. We should also add a constructor that we can use to pass in the data we want the adapter to use.</p>
+<p>First, add a member variable and a constructor that takes in a list of Strings and keeps the reference:</p>
+<pre class="hljs"><code><span class="hljs-keyword">private</span> List strings;
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RecyclerViewStringListAdapter</span><span class="hljs-params">(List strings)</span> </span>{
+    <span class="hljs-keyword">this</span>.strings = strings;
+}
+</code></pre>
+<p>Next, let’s override getItemCount. It is very simple with a list backing our data.</p>
+<pre class="hljs"><code><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getItemCount</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> strings.size();
+}
+</code></pre>
+<p>Next comes onCreateViewHolder. This method is for us to inflate an item view and populate a ViewHolder object to reference it.</p>
+<pre class="hljs"><code><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> ViewHolder <span class="hljs-title">onCreateViewHolder</span><span class="hljs-params">(ViewGroup parent, <span class="hljs-keyword">int</span> i)</span> </span>{
+    View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.li_adjective, parent, <span class="hljs-keyword">false</span>);
+    ViewHolder viewHolder = <span class="hljs-keyword">new</span> ViewHolder(itemView);
+    <span class="hljs-keyword">return</span> viewHolder;
+}
+</code></pre>
+<p>Finally, we have the onBindViewHolder. This method is for populating all views in the provided ViewHolder that will be placed at the provided position. For us it’s simple: set the text on the TextView. We could also change the image here if we really wanted to.</p>
+<pre class="hljs"><code><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onBindViewHolder</span><span class="hljs-params">(ViewHolder viewHolder, <span class="hljs-keyword">int</span> position)</span> </span>{
+    viewHolder.tvText.setText(strings.get(position));
+}
+</code></pre>
+<p>Guess what? We’re almost done! All that’s left is to create an instance of our RecyclerViewStringListAdapter class and set it to the RecyclerView 🙂</p>
+<pre class="hljs"><code>recyclerView.setAdapter(<span class="hljs-keyword">new</span> RecyclerViewStringListAdapter(adjectives));
+</code></pre>
+<p>Tada!</p>
+</div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

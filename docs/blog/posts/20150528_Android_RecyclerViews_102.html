@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Josh McDale</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" integrity="sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar bar sticky-top navbar-inverse navbar-toggleable-sm py-0"><a class="navbar-brand brand" href="/">JOSH MCDALE</a>
+      <div class="navbar-toggler navbar-toggler-right menu" data-toggle="collapse" data-target="#navbarNavDropdown"><span class="navbar-toggler-icon"></span></div>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item hidden-md-up m-auto"><a class="nav-link icon px-2" href="https://twitter.com/joshedly">
+              <object class="icon" data="/content/icons/twitter.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="https://www.linkedin.com/in/joshmcdale/">
+              <object class="icon" data="/content/icons/linkedin.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="/blog">
+              <object class="icon" data="/content/icons/news.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="https://github.com/jmcdale">
+              <object class="icon" data="/content/icons/github.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="https://stackoverflow.com/users/1038485/jmcdale">
+              <object class="icon" data="/content/icons/stackoverflow.svg" type="image/svg+xml" height="32px" width="32px"></object></a><a class="nav-link icon px-2" href="mailto:josh@jmcdale.com">
+              <object class="icon" data="/content/icons/email2.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="https://twitter.com/joshedly">
+              <object class="icon" data="/content/icons/twitter.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="https://www.linkedin.com/in/joshmcdale/">
+              <object class="icon" data="/content/icons/linkedin.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="/blog">
+              <object class="icon" data="/content/icons/news.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="https://github.com/jmcdale">
+              <object class="icon" data="/content/icons/github.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="https://stackoverflow.com/users/1038485/jmcdale">
+              <object class="icon" data="/content/icons/stackoverflow.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+          <li class="nav-item hidden-sm-down"><a class="nav-link icon" href="mailto:josh@jmcdale.com">
+              <object class="icon" data="/content/icons/email2.svg" type="image/svg+xml" height="32px" width="32px"></object></a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container contents">
+      <div class="row">
+        <div class="col-12"><h1>Android RecyclerViews 102: Swipe-to-Dismiss</h1>
+<p>Google released an updated support library today! It includes an ItemTouchHelper class that makes implementing swipe-to-dismiss awesomely simple for us to implement on the RecyclerView! Want to know how? Let’s get started!</p>
+<p>This tutorial picks up where <a href="http://jmcdale.com">Android RecyclerViews 101</a> left off. If you want to skip 101, <a href="http://jmcdale.com">clone the repo</a> and check out the <a href="http://jmcdale.com">“102_Start”</a> tag.</p>
+<h2>Updating the Dependencies</h2>
+<p>The RecyclerView dependency that we added to our build.gradle file in the previous tutorial is now outdated. It will continue to work just fine, but we need to update it to v22.2.0 in order to use the ItemTouchHelper class. Pretty simple! Just change the line to match:</p>
+<pre class="hljs"><code>compile <span class="hljs-string">'com.android.support:recyclerview-v7:22.2.+'</span>
+</code></pre>
+<p>ReSync Gradle and we’re ready to go.</p>
+<h2>Creating and setting up the ItemTouchHelper</h2>
+<p>We are going to do 3 things to initialize an ItemTouchHelper:</p>
+<ol>
+<li>We will create a SimpleCallback.</li>
+<li>We will instantiate it.</li>
+<li>We will attach it to the RecyclerView.</li>
+</ol>
+<h3>Creating a SimpleCallback</h3>
+<p>The constructor for the ItemTouchHelper takes in an ItemTouchHelper.Callback. We are going to create an instance of the abstract subclass ItemTouchCallback.SimpleCallback for this purpose. One thing we need to know about the SimpleCallback is that its constructor has 2 parameters. Here is the signature:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SimpleCallback</span><span class="hljs-params">(<span class="hljs-keyword">int</span> dragDirs, <span class="hljs-keyword">int</span> swipeDirs)</span> </span>{
+</code></pre>
+<p>The first parameter defines which directions we want to allow the items in the RecyclerView to be dragged. We will set this as 0 here because we aren’t learning about drag and drop right now. For this tutorial, we are more concerned with the second parameter: swipeDirs. This defines which directions we want to allow the items to be swiped in. This parameter is a flag, so we can choose multiple directions and ‘OR’ them together. I’m going to allow Left and Right. Let’s create our anonymous SimpleCallback and assign it to a local variable in the OnCreate method of our MainActivity.</p>
+<pre class="hljs"><code>ItemTouchHelper.SimpleCallback simpleItemTouchCallback = <span class="hljs-keyword">new</span> ItemTouchHelper.SimpleCallback(<span class="hljs-number">0</span>, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onMove</span><span class="hljs-params">(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder1)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSwiped</span><span class="hljs-params">(RecyclerView.ViewHolder viewHolder, <span class="hljs-keyword">int</span> swipeDir)</span> </span>{
+    }
+};
+</code></pre>
+<h3>Instantiate an ItemTouchHelper</h3>
+<p>Since we have our callback, let’s instantiate an ItemTouchHelper.</p>
+<pre class="hljs"><code>ItemTouchHelper itemTouchHelper = <span class="hljs-keyword">new</span> ItemTouchHelper(simpleItemTouchCallback);
+</code></pre>
+<h3>Attaching an ItemTouchHelper</h3>
+<p>Finally, let’s attach it to the RecyclerView.</p>
+<pre class="hljs"><code>itemTouchHelper.attachToRecyclerView(recyclerView);
+</code></pre>
+<p><strong>Important:</strong> Some of you might have noticed that ItemTouchHelper is a subclass of RecyclerView.ItemDecoration. Typically, ItemDecorations are added to a RecyclerView through the recyclerView.addItemDecoration method. DON’T DO IT! The itemTouchHelper.attachToRecyclerView method does call recyclerView.addItemDecoration internally, but it also does a few other things that it needs to do in order to work properly.</p>
+<p>Guess what? You have a working swipe animation in your list already! We’re not quite done yet, but run the app and try it out!</p>
+<p>Now for the final steps:</p>
+<h2>Dismissing an Item When Swiped</h2>
+<p>In the 101 tutorial we created the adjectives list in a manner that doesn’t support removing items. Let’s wrap it in an ArrayList before we continue.</p>
+<pre class="hljs"><code><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> List&lt;String&gt; adjectives = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="hljs-keyword">new</span> String[]{
+    <span class="hljs-string">"Awesome"</span>, <span class="hljs-string">"Peculiar"</span>, <span class="hljs-string">"Green"</span>, <span class="hljs-string">"Sad"</span>, <span class="hljs-string">"Gross"</span>, <span class="hljs-string">"Lovely"</span>, <span class="hljs-string">"Insane"</span>,
+    <span class="hljs-string">"Compostable"</span>, <span class="hljs-string">"Blue"</span>, <span class="hljs-string">"Wooden"</span>, <span class="hljs-string">"Grotesque"</span>, <span class="hljs-string">"Beautiful"</span>}));
+</code></pre>
+<p>Now we are going to implement the onSwiped method of the simpleCallback we created earlier. Specifically, we are going to</p>
+<ol>
+<li>Get the position of the swiped item.</li>
+<li>Remove the swiped item from our adjectives list.</li>
+<li>Tell the adapter that we removed the item
+And that’s all!</li>
+</ol>
+<pre class="hljs"><code><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSwiped</span><span class="hljs-params">(RecyclerView.ViewHolder viewHolder, <span class="hljs-keyword">int</span> swipeDir)</span> </span>{
+    <span class="hljs-keyword">int</span> position = viewHolder.getAdapterPosition();
+    adjectives.remove(position);
+    recyclerView.getAdapter().notifyItemRemoved(position);
+}
+</code></pre>
+<p>Run the app and you now have swipe-to-dismiss on your RecyclerView!</p>
+</div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

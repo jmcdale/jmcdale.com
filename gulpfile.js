@@ -26,7 +26,7 @@ var md = require('markdown-it')({
     linkify: true
 });
 
-var buildPath = "./build";
+var buildPath = "./docs";
 
 
 var blogHomeData = [];
