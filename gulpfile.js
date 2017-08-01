@@ -16,7 +16,8 @@ var md = require('markdown-it')({
                 return '<pre class="hljs"><code>' +
                     hljs.highlight(lang, str, true).value +
                     '</code></pre>';
-            } catch (__) {}
+            } catch (__) {
+            }
         }
 
         return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
@@ -24,20 +25,36 @@ var md = require('markdown-it')({
     linkify: true
 });
 
+var blogHomeData = [];
+
 // Default task
-gulp.task('default', ['pug', 'make-posts', 'less']);
+gulp.task('default', ['pug', 'make-posts', 'make-blog-home', 'less']);
 
 // Less task to compile the less files and add the banner
 gulp.task('make-posts', function () {
     return gulp.src('./posts/*.md')
         .pipe(frontMatter({"property": 'data.frontMatter'}))
         .pipe(data(function (file) {
+
+            var postData = file.data.frontMatter;
+            postData.name = file.relative.slice(0, -3);
+            blogHomeData.push(postData);
             var contents = md.render(file.contents.toString());
             return {"post": contents}
         }))
-        .pipe(wrap({"src":"./templates/post.pug"}, null, {engine: 'pug', pretty:true}))
+        .pipe(wrap({"src": "./templates/post.pug"}, null, {engine: 'pug', pretty: true}))
         .pipe(rename({extname: ".html"}))
         .pipe(gulp.dest('./build/blog/posts'))
+});
+
+gulp.task('make-blog-home', ['make-posts'], function () {
+    return gulp.src('./templates/blog.pug')
+        .pipe(pug({
+            locals: {"posts": blogHomeData.reverse()},
+            pretty: true
+        }))
+        .pipe(rename({extname: ".html"}))
+        .pipe(gulp.dest('./build/blog/'))
 });
 
 // Less task to compile the less files and add the banner

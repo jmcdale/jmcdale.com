@@ -1,6 +1,8 @@
 ---
 title: "Android RecyclerViews 102: Swipe-to-Dismiss"
 tags: ["android", "listview", "recyclerview", "swipe-to-dismiss", "tutorial"]
+date: May 28, 2015
+blurb: "Google released an updated support library today! It includes an ItemTouchHelper class that makes implementing swipe-to-dismiss awesomely simple for us to implement on the RecyclerView! Want to know how? Let’s get started!"
 ---
 
 Android RecyclerViews 102: Swipe-to-Dismiss

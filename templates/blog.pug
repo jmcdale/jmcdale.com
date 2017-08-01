@@ -1,0 +1,157 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title Josh McDale
+        link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', integrity='sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=', crossorigin='anonymous')
+        style(type='text/css').
+            html {
+                height: 100%;
+                min-height: 100%;
+            }
+
+            body {
+                font-family: 'Roboto', sans-serif;
+                color: #CCCCCC;
+                background-color: white;
+                min-height: 100%;
+                height: 100%;
+            }
+
+            a.icon {
+                position: relative;
+                display: inline-block;
+                transition: all .1s ease-out;
+            }
+
+            a.icon:hover {
+                transform: scale(1.2);
+            }
+
+            a.icon:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+
+            h1 {
+                letter-spacing: 2px;
+                font-size: 32px;
+                margin: 0px;
+                margin-top: .5rem;
+            }
+
+            h2 {
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 18px;
+            }
+
+            .brand {
+                letter-spacing: 2px;
+                font-size: 32px;
+                color: #CCCCCC;
+            }
+
+            a:link.brand, a:visited.brand {
+                color: #CCCCCC;
+            }
+
+            a:hover.brand, a:active.brand {
+                color: #00904E !important;
+            }
+
+            a:link.post, a:visited.post {
+                color: black;
+            }
+
+            a:hover.post, a:active.post {
+                color: #00904E !important;
+                text-decoration: none;
+            }
+
+            .bar {
+                background-color: black;
+            }
+
+            .contents {
+                background-color: rgba(204, 204, 204, 0.33);
+                color: black;
+                height: 100%;
+                min-height: 100%;
+                height: auto !important; /* cross-browser */
+                padding-left: 3rem;
+                padding-right: 3rem;
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            @media (max-width: 768px) {
+                .contents {
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                    padding-top: .75rem;
+                    padding-bottom: .75rem;
+                }
+            }
+
+            .menu {
+                margin-top: 10px;
+            }
+    body
+        nav.navbar.bar.sticky-top.navbar-inverse.navbar-toggleable-sm.py-0
+            a.navbar-brand.brand(href='https://jmcdale.com') JOSH MCDALE
+            .navbar-toggler.navbar-toggler-right.menu(data-toggle='collapse', data-target='#navbarNavDropdown')
+                span.navbar-toggler-icon
+            #navbarNavDropdown.collapse.navbar-collapse
+                ul.navbar-nav.ml-auto
+                    li.nav-item.hidden-md-up.m-auto
+                        a.nav-link.icon.px-2(href='https://twitter.com/joshedly')
+                            object.icon(data='../content/icons/twitter.svg', type='image/svg+xml', height='32px', width='32px')
+                        a.nav-link.icon.px-2(href='https://www.linkedin.com/in/joshmcdale/')
+                            object.icon(data='../content/icons/linkedin.svg', type='image/svg+xml', height='32px', width='32px')
+                        a.nav-link.icon.px-2(href='https://jmcdale.com/blog')
+                            object.icon(data='../content/icons/news.svg', type='image/svg+xml', height='32px', width='32px')
+                        a.nav-link.icon.px-2(href='https://github.com/jmcdale')
+                            object.icon(data='../content/icons/github.svg', type='image/svg+xml', height='32px', width='32px')
+                        a.nav-link.icon.px-2(href='https://stackoverflow.com/users/1038485/jmcdale')
+                            object.icon(data='../content/icons/stackoverflow.svg', type='image/svg+xml', height='32px', width='32px')
+                        a.nav-link.icon.px-2(href='mailto:josh@jmcdale.com')
+                            object.icon(data='../content/icons/email2.svg', type='image/svg+xml', height='32px', width='32px')
+                    li.nav-item.hidden-sm-down
+                        a.nav-link.icon(href='https://twitter.com/joshedly')
+                            object.icon(data='../content/icons/twitter.svg', type='image/svg+xml', height='32px', width='32px')
+                    li.nav-item.hidden-sm-down
+                        a.nav-link.icon(href='https://www.linkedin.com/in/joshmcdale/')
+                            object.icon(data='../content/icons/linkedin.svg', type='image/svg+xml', height='32px', width='32px')
+                    li.nav-item.hidden-sm-down
+                        a.nav-link.icon(href='https://jmcdale.com/blog')
+                            object.icon(data='../content/icons/news.svg', type='image/svg+xml', height='32px', width='32px')
+                    li.nav-item.hidden-sm-down
+                        a.nav-link.icon(href='https://github.com/jmcdale')
+                            object.icon(data='../content/icons/github.svg', type='image/svg+xml', height='32px', width='32px')
+                    li.nav-item.hidden-sm-down
+                        a.nav-link.icon(href='https://stackoverflow.com/users/1038485/jmcdale')
+                            object.icon(data='../content/icons/stackoverflow.svg', type='image/svg+xml', height='32px', width='32px')
+                    li.nav-item.hidden-sm-down
+                        a.nav-link.icon(href='mailto:josh@jmcdale.com')
+                            object.icon(data='../content/icons/email2.svg', type='image/svg+xml', height='32px', width='32px')
+        .container.contents
+            each post in posts
+                .row
+                    .col-12
+                        a.post(href="posts/" + post.name + ".html")
+                            h1 #{post.title}
+                            h2 #{post.date}
+                            p=post.blurb
+        script(src='https://code.jquery.com/jquery-3.1.1.slim.min.js', integrity='sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js', integrity='sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb', crossorigin='anonymous')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn', crossorigin='anonymous')

@@ -1,6 +1,8 @@
 ---
 title: Android RecyclerViews 101
 tags: ["android", "listview", "recyclerview", "tutorial"]
+date: December 05, 2014
+blurb: "RecyclerViews for Android are the natural evolution of the ListView. They are cleaner, easier to use, and always enforce view recycling. Use them whenever you want to display data with a set of common views that can be reused for efficiency and to replace ListViews and GridView."
 ---
 
 Android RecyclerViews 101
