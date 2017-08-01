@@ -1,0 +1,17 @@
+{
+  "author": "Josh McDale",
+  "repository": "http://github.com/jmcdale/jmcdale.com",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-data": "^1.2.1",
+    "gulp-front-matter": "^1.3.0",
+    "gulp-less": "^3.3.2",
+    "gulp-pug": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-wrap": "^0.13.0",
+    "highlight.js": "^9.12.0",
+    "markdown-it": "^8.3.1",
+    "showdown": "^1.7.1"
+  }
+}

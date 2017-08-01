@@ -1,0 +1,114 @@
+@theme-black: black;
+@theme-green: #00904E;
+@theme-grey: #CCCCCC;
+@theme-white: white;
+@theme-content-grey: rgba(204, 204, 204, 0.33);
+
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: @theme-grey;
+  background-color: @theme-white;
+  min-height: 100%;
+  height: 100%;
+}
+
+a.icon {
+  position: relative;
+  display: inline-block;
+  transition: all .1s ease-out;
+}
+
+a.icon:hover {
+  transform: scale(1.2);
+}
+
+a.icon:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+h1 {
+  letter-spacing: 2px;
+  font-size: 32px;
+  margin: 0px;
+  margin-top: .5rem;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+p, ol > li {
+  font-size: 18px;
+}
+
+.brand {
+  letter-spacing: 2px;
+  font-size: 32px;
+  color: @theme-grey;
+}
+
+a:link.brand, a:visited.brand {
+  color: @theme-grey;
+}
+
+a:hover.brand, a:active.brand {
+  color: @theme-green !important;
+}
+
+.container {
+  a:link, a:visited {
+    color: @theme-green !important;
+  }
+  a:hover, a:active {
+    color: @theme-green !important;
+    //text-decoration: none;
+  }
+  a:link.post, a:visited.post {
+    color: @theme-black !important;
+    text-decoration: none;
+  }
+
+  a:hover.post, a:active.post {
+    color: @theme-green !important;
+    text-decoration: none;
+  }
+}
+
+.bar {
+  background-color: @theme-black;
+}
+
+.contents {
+  background-color: @theme-content-grey;
+  color: @theme-black;
+  height: 100%;
+  min-height: 100%;
+  height: auto !important; /* cross-browser */
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .contents {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+  }
+}
+
+.menu {
+  margin-top: 10px;
+}
