@@ -25,10 +25,13 @@ var md = require('markdown-it')({
     linkify: true
 });
 
+var buildPath = "./build"
+
+
 var blogHomeData = [];
 
 // Default task
-gulp.task('default', ['pug', 'make-posts', 'make-blog-home', 'less']);
+gulp.task('default', ['pug', 'make-posts', 'make-blog-home', 'less', 'copy-static-content']);
 
 // Less task to compile the less files and add the banner
 gulp.task('make-posts', function () {
@@ -44,7 +47,7 @@ gulp.task('make-posts', function () {
         }))
         .pipe(wrap({"src": "./templates/post.pug"}, null, {engine: 'pug', pretty: true}))
         .pipe(rename({extname: ".html"}))
-        .pipe(gulp.dest('./build/blog/posts'))
+        .pipe(gulp.dest(buildPath + '/blog/posts'))
 });
 
 gulp.task('make-blog-home', ['make-posts'], function () {
@@ -53,15 +56,21 @@ gulp.task('make-blog-home', ['make-posts'], function () {
             locals: {"posts": blogHomeData.reverse()},
             pretty: true
         }))
-        .pipe(rename({extname: ".html"}))
-        .pipe(gulp.dest('./build/blog/'))
+        .pipe(rename("index.html"))
+        .pipe(gulp.dest(buildPath + '/blog/'))
+});
+
+// Less task to compile the less files and add the banner
+gulp.task('copy-static-content', function () {
+    return gulp.src('./content/**')
+        .pipe(gulp.dest(buildPath + '/content'));
 });
 
 // Less task to compile the less files and add the banner
 gulp.task('less', function () {
     return gulp.src('./less/*.less')
         .pipe(less())
-        .pipe(gulp.dest('./build/css'));
+        .pipe(gulp.dest(buildPath + '/css'));
 });
 
 // Compile pug files to html
@@ -73,7 +82,7 @@ gulp.task('pug', function () {
             locals: YOUR_LOCALS,
             pretty: true
         }))
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest(buildPath))
 });
 
 // Minify CSS
@@ -81,7 +90,7 @@ gulp.task('minify-css', ['less'], function () {
     return gulp.src('./build/css/*.css')
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('./build/css-min'))
+        .pipe(gulp.dest(buildPath + '/css-min'))
         .pipe(browserSync.reload({
             stream: true
         }))
@@ -92,18 +101,8 @@ gulp.task('minify-js', function () {
     return gulp.src('./js/*.js')
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('./build/js'))
+        .pipe(gulp.dest(buildPath + '/js'))
         .pipe(browserSync.reload({
             stream: true
         }))
-});
-
-// Rename Output File
-gulp.task('rename-out', ['pug', 'inject-js', 'inject-css'], function () {
-    return gulp.src('./index.html')
-        .pipe(rename({
-            basename: 'CSMA_UUID',
-            suffix: '.v' + pkg.version
-        }))
-        .pipe(gulp.dest('./'));
 });
