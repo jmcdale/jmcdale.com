@@ -1,3 +1,9 @@
+@theme-black: black;
+@theme-green: #00904E;
+@theme-grey: #CCCCCC;
+@theme-white: white;
+@theme-content-grey: rgba(204, 204, 204, 0.33);
+
 html {
   height: 100%;
   min-height: 100%;
@@ -5,8 +11,8 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  color: #CCCCCC;
-  background-color: white;
+  color: @theme-grey;
+  background-color: @theme-white;
   min-height: 100%;
   height: 100%;
 }
@@ -41,40 +47,50 @@ h2 {
   font-size: 16px;
 }
 
-p, ol>li {
+p, ol > li {
   font-size: 18px;
 }
 
 .brand {
   letter-spacing: 2px;
   font-size: 32px;
-  color: #CCCCCC;
+  color: @theme-grey;
 }
 
 a:link.brand, a:visited.brand {
-  color: #CCCCCC;
+  color: @theme-grey;
 }
 
 a:hover.brand, a:active.brand {
-  color: #00904E !important;
+  color: @theme-green !important;
 }
 
-.container a:link, .container a:visited {
-  color: #00904E !important;
-}
+.container {
+  a:link, a:visited {
+    color: @theme-green !important;
+  }
+  a:hover, a:active {
+    color: @theme-green !important;
+    //text-decoration: none;
+  }
+  a:link.post, a:visited.post {
+    color: @theme-black !important;
+    text-decoration: none;
+  }
 
-.container a:hover, .container a:active {
-  color: #00904E !important;
-  //text-decoration: none;
+  a:hover.post, a:active.post {
+    color: @theme-green !important;
+    text-decoration: none;
+  }
 }
 
 .bar {
-  background-color: black;
+  background-color: @theme-black;
 }
 
 .contents {
-  background-color: rgba(204, 204, 204, 0.33);
-  color: black;
+  background-color: @theme-content-grey;
+  color: @theme-black;
   height: 100%;
   min-height: 100%;
   height: auto !important; /* cross-browser */
