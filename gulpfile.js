@@ -1,6 +1,6 @@
 // Assigning modules to local variables
 var gulp = require('gulp');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create();
 var fs = require('fs');
 var less = require('gulp-less');
 var pug = require('gulp-pug');
@@ -26,7 +26,7 @@ var md = require('markdown-it')({
     linkify: true
 });
 
-var buildPath = "./build"
+var buildPath = "./build";
 
 
 var blogHomeData = [];
@@ -39,7 +39,6 @@ gulp.task('make-posts', function () {
     return gulp.src('./posts/*.md')
         .pipe(frontMatter({"property": 'data.frontMatter'}))
         .pipe(data(function (file) {
-
             var postData = file.data.frontMatter;
             postData.name = file.relative.slice(0, -3);
             blogHomeData.push(postData);
@@ -48,7 +47,7 @@ gulp.task('make-posts', function () {
         }))
         .pipe(wrap({"src": "./templates/post.pug"}, null, {engine: 'pug', pretty: true}))
         .pipe(rename({extname: ".html"}))
-        .pipe(gulp.dest(buildPath + '/blog/posts'))
+        .pipe(gulp.dest(buildPath + '/blog/posts'));
 });
 
 gulp.task('make-blog-home', ['make-posts'], function () {
@@ -59,6 +58,7 @@ gulp.task('make-blog-home', ['make-posts'], function () {
         }))
         .pipe(rename("index.html"))
         .pipe(gulp.dest(buildPath + '/blog/'))
+        .pipe(browserSync.stream());
 });
 
 // Less task to compile the less files and add the banner
@@ -71,7 +71,8 @@ gulp.task('copy-static-content', function () {
 gulp.task('less', function () {
     return gulp.src('./less/*.less')
         .pipe(less())
-        .pipe(gulp.dest(buildPath + '/css'));
+        .pipe(gulp.dest(buildPath + '/css'))
+        .pipe(browserSync.stream());
 });
 
 // Compile pug files to html
@@ -84,14 +85,21 @@ gulp.task('pug', function () {
             pretty: true
         }))
         .pipe(gulp.dest(buildPath))
+        .pipe(browserSync.stream());
 });
 
-gulp.task('serve', ['default'], function() {
+gulp.task('serve', ['default'], function () {
     browserSync.init({
         server: {
             baseDir: buildPath
         }
     });
+
+    gulp.watch("./less/*.less", ['less']);
+    gulp.watch("./pug/**/*.pug", ['pug']);
+    gulp.watch("./posts/*.md", ['make-blog-home']);
+    gulp.watch("./templates/blog.pug", ['make-blog-home']);
+    gulp.watch("./templates/post.pug", ['make-blog-home']);
 });
 
 // Minify CSS
