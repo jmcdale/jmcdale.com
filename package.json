@@ -2,6 +2,7 @@
   "author": "Josh McDale",
   "repository": "http://github.com/jmcdale/jmcdale.com",
   "devDependencies": {
+    "browser-sync":"^2.26.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.7.0",
     "gulp-data": "^1.2.1",

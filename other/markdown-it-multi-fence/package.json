@@ -1,0 +1,8 @@
+{
+  "name": "markdown-it-multi-fence",
+  "author": "Josh McDale",
+  "repository": "http://github.com/jmcdale/jmcdale.com",
+  "version": "0.1.0",
+  "devDependencies": {},
+  "description": "Plugin for markdown-it to enable tabbed fences"
+}
