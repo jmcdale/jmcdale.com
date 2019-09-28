@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://jmcdale.com/blog</id>
+    <title>Josh McDale</title>
+    <updated>2019-09-28T17:07:24.611Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Josh McDale</name>
+        <email>josh@jmcdale.com</email>
+        <uri>https://jmcdale.com</uri>
+    </author>
+    <link rel="alternate" href="http://jmcdale.com/blog"/>
+    <entry>
+        <title type="html"><![CDATA[Android RecyclerViews 101]]></title>
+        <id>http://jmcdale.com/blog/posts20141205_Android_Recyclerviews_101.html</id>
+        <link href="http://jmcdale.com/blog/posts20141205_Android_Recyclerviews_101.html"/>
+        <updated>2014-12-05T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[RecyclerViews for Android are the natural evolution of the ListView. They are cleaner, easier to use, and always enforce view recycling. Use them whenever you want to display data with a set of common views that can be reused for efficiency and to replace ListViews and GridView.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Android RecyclerViews 102: Swipe-to-Dismiss]]></title>
+        <id>http://jmcdale.com/blog/posts20150528_Android_RecyclerViews_102.html</id>
+        <link href="http://jmcdale.com/blog/posts20150528_Android_RecyclerViews_102.html"/>
+        <updated>2015-05-28T05:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Google released an updated support library today! It includes an ItemTouchHelper class that makes implementing swipe-to-dismiss awesomely simple for us to implement on the RecyclerView! Want to know how? Let’s get started!]]></summary>
+    </entry>
+</feed>

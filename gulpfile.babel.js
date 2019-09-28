@@ -8,6 +8,7 @@ import pug from 'gulp-pug'
 import rename from 'gulp-rename'
 import wrap from 'gulp-wrap'
 import md from './other/custom-markdown'
+import rss from "./other/gulp-rss";
 
 const server = browserSync.create();
 
@@ -73,6 +74,39 @@ function _makeBlogHome() {
 
 const makeBlogHome = gulp.series(makePosts, _makeBlogHome)
 
+function frontMatterToFeedTransformer(frontMatter) {
+    let item = {};
+    item.title = frontMatter.title
+    item.link = "http://jmcdale.com/blog/posts" + frontMatter.name + ".html"
+    item.description = frontMatter.blurb
+    item.date = frontMatter.date
+    return item
+}
+
+function makeRss() {
+    let feedOptions = {
+        fileName: "rss",
+        title: "Josh McDale",
+        id: "http://jmcdale.com/blog",
+        link: "http://jmcdale.com/blog",
+        author: {
+            name: "Josh McDale",
+            email: "josh@jmcdale.com",
+            link: "https://jmcdale.com"
+        },
+        frontMatterTransformer: frontMatterToFeedTransformer
+    };
+
+    return gulp.src('./posts/*.md')
+        .pipe(frontMatter({"property": 'data.frontMatter'}))
+        .pipe(data(function (file) {
+            file.data.frontMatter.name = file.relative.slice(0, -3);
+            return {"post": file}
+        }))
+        .pipe(rss(feedOptions))
+        .pipe(gulp.dest(buildPath + '/blog'));
+}
+
 function makePosts() {
     return gulp.src('./posts/*.md')
         .pipe(frontMatter({"property": 'data.frontMatter'}))
@@ -91,13 +125,13 @@ function makePosts() {
 const watchLess = () => gulp.watch("./less/*.less", gulp.series(less, reload));
 const watchPug = () => gulp.watch("./pug/**/*.pug", gulp.series(pugTask, reload));
 const watchScripts = () => gulp.watch("./scripts/**/*.js", gulp.series(scripts, reload));
-const watchHomePosts = () => gulp.watch("./posts/*.md", gulp.series(makeBlogHome, reload));
+const watchHomePosts = () => gulp.watch("./posts/*.md", gulp.series(makeBlogHome, makeRss, reload));
 const watchBlogTemplate = () => gulp.watch("./templates/blog.pug", gulp.series(makeBlogHome, reload));
 const watchPostTemplate = () => gulp.watch("./templates/post.pug", gulp.series(makeBlogHome, reload));
 
 const watch = gulp.parallel(watchLess, watchPug, watchScripts, watchHomePosts, watchBlogTemplate, watchPostTemplate)
 
-const build = gulp.series(clean, pugTask, makeBlogHome, convertLess, copyStaticContent, copyCNAME, scripts);
+const build = gulp.series(clean, pugTask, makeBlogHome, convertLess, copyStaticContent, copyCNAME, scripts, makeRss);
 const serve = gulp.series(build, _serve, watch);
 
 export {clean, serve};
